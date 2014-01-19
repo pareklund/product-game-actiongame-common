@@ -64,7 +64,7 @@ public abstract class ActionGameComponentFactoryImpl extends GameComponentFactor
         info.getName(), info.getType(), (ActionGameLevel) level, 
         position, info.getWidth(), info.getHeight(),
         info.getPoints(), info.getMoveSpeed(), 
-        info.getFovHorizontal(), info.getHearHorizontal(),
+//        info.getFovHorizontal(), info.getHearHorizontal(),
         info.getDefaultSpritePath(), info.getKilledSoundPath(),
         info.getIntermittentSoundPath()));      
     } else if (resourceInfo.getType().equals("GroundBasedEnemyBase")) {

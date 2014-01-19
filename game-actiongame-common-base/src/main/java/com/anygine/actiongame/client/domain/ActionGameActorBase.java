@@ -6,17 +6,10 @@ import com.anygine.core.common.client.geometry.Vector2;
 
 // Used as simulated trait, thus cannot be abstract
 public class ActionGameActorBase
-/* <S extends ActionGameComponentState, 
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>, 
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */
-  <S extends ActionGameComponentState, 
-  L extends ActionGameLevel<?>, 
-  A extends ActionGameActor<?>>
-  extends ActorBase<S> 
-  implements ActionGameActor<S> {
+  <S extends ActionGameComponentState,
+  L extends ActionGameLevel<?, ?>>
+  extends ActorBase<S, L>
+  implements ActionGameActor<S, L> {
 
   protected final SoundWithPath killedSound;
 
@@ -71,7 +64,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
   }
 
   @Override
-  public <A extends ActionGameActor<?>> void onKilled(A killedBy) {
+  public <A extends ActionGameActor<?, ?>> void onKilled(A killedBy) {
     killedBy.increaseScore(points);
     killedSound.play();
   }

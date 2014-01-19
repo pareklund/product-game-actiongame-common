@@ -8,12 +8,12 @@ import com.anygine.core.common.client.domain.Tile.TileCollision;
 
 public interface ActionGameLevel
   <GC extends ActionGameComponent<?, ?>,
-  P extends ActionGamePlayer<?, ?>
+  P extends ActionGamePlayer<?, ? super ActionGameLevel<?, ?>>>
   extends Level<GC, P> {
   
-  <E extends Enemy<?>> List<E> getEnemies();
+  <E extends Enemy<?, ?>> List<E> getEnemies();
   
-  <CL extends Collectable<?>> List<CL> getCollectables();
+  <CL extends Collectable<?, ?>> List<CL> getCollectables();
   
   <X extends Exit<?, ?>> List<X> getExits();
 
@@ -38,9 +38,9 @@ public interface ActionGameLevel
   int numValuablesRequired();
   
   // TODO: Generify Projectile type
-  <PR extends Projectile<?, ?>> void addProjectiles(List<PR> projectiles);
+  <PR extends Projectile<?, ?, ?>> void addProjectiles(List<PR> projectiles);
   
-  <PR extends Projectile<?, ?>> List<PR> getProjectiles();
+  <PR extends Projectile<?, ?, ?>> List<PR> getProjectiles();
 
   <P extends ActionGamePlayer<?, ?>> void addTime(P player, int time);
 }

@@ -17,6 +17,16 @@
   <description>Anygine Product Game Action Game Common API Component</description>
 
   <dependencies>
+    <dependency>
+      <groupId>com.anygine.common.common</groupId>
+      <artifactId>common-common-entity-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.anygine.product.game.common.common</groupId>
+      <artifactId>product-game-common-common-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -20,5 +20,5 @@ E extends Enemy<S, P, L, GC, A, E>> */
 //<II extends InventoryItem<?, ?, ?>>
 {
 //	boolean onAdded(InventoryItem<S, P, L, GC, A, E> item);
-  <II extends InventoryItem<?>> boolean onAdded(II item);
+  <II extends InventoryItem<?, ?>> boolean onAdded(II item);
 }

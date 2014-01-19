@@ -8,25 +8,20 @@ import com.anygine.core.common.client.input.Input;
 
 @Storable
 public class AirBasedEnemyBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */ 
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-  A extends ActionGameActor<?, ?, ?>>
-  extends EnemyBase<S, L, A> 
-  implements AirBasedEnemy<S, L, A> {
+  L extends ActionGameLevel<?, ?>>
+  extends EnemyBase<S, L>
+  implements AirBasedEnemy<S, L> {
 
 	public AirBasedEnemyBase(
 	    String name, String type, L level, Vector2 position, int width, 
 			int height, int points, float moveSpeed, 
+/*
 			// TODO: Move to platformer specific subclass
 			@FieldRef(field="fieldOfView", attribute="X") float fovHorizontal, 
       // TODO: Move to platformer specific subclass
-      @FieldRef(field="hearingRange", attribute="X") float hearHorizontal, 
+      @FieldRef(field="hearingRange", attribute="X") float hearHorizontal,
+       */
       @FieldRef(field="texture", attribute="path") String spritePath, 
       @FieldRef(field="killedSound", attribute="path") String killedSoundPath,
       @FieldRef(field="intermittentSound", attribute="path") String intermittentSoundPath) {
