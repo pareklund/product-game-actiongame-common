@@ -15,7 +15,7 @@ public abstract class GunBase
   L extends ActionGameLevel<?, ?>,
   A extends ActionGameActor<?, ?>>
   extends InventoryItemBase<S, L, A> 
-  implements Gun<S, L> {
+  implements Gun<S, L, A> {
 
   // TODO: Ensure that an Embeddable class is generated for this inner class
   @Embeddable
@@ -60,10 +60,10 @@ public abstract class GunBase
 		}
 		
 		public List<Projectile<S, A, L>> useAmmo(
-            int num, float projectileSpeed, A ownedBy) {
+            int num, float projectileSpeed) {
 			Ammo<S, L, A> ammo = ammos.get(selectedIndex);
 			List<Projectile<S, A, L>> projectiles =
-              ammo.use(num, projectileSpeed, ownedBy);
+              ammo.use(num, projectileSpeed);
 			if (ammo.isEmpty()) {
 				ammos.remove(selectedIndex);
 				if (selectedIndex > ammos.size()) {
@@ -135,7 +135,7 @@ public abstract class GunBase
 		}
 		// TODO: Add projectile type
 		List<Projectile<S, A, L>> projectiles = ammoSupply.useAmmo(
-				roundsPerShot, projectileSpeed, (A) ownedBy);
+				roundsPerShot, projectileSpeed);
 		ownedBy.getLevel().addProjectiles(projectiles);
 		firingSound.play();
 	}
@@ -154,12 +154,12 @@ public abstract class GunBase
 	public List<InventoryListener> getListeners() {
 		List<InventoryListener> listeners = 
 		    new ArrayList<InventoryListener>(1);
-		listeners.add(new InventoryListener() {
+		listeners.add(new InventoryListener<InventoryItem<?, ?, ?>>() {
 			
 			// If GunAmmo added to inventory, add it to Gun and 
 			// don't add it separately to inventory
 			@Override
-			public <II extends InventoryItem<?, ?, ?>> boolean onAdded(II item) {
+			public boolean onAdded(InventoryItem<?, ?, ?> item) {
 				if (item.getType().equals("Ammo")) {
 				  // TODO: Possibly make InventoryItem type parameterized (not just
 				  //       method), to avoid casting

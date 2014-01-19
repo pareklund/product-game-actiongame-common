@@ -13,12 +13,12 @@ public class  Inventory {
   private static final int NOT_FOUND = -1;
 
 //  InventoryItem test;
-  List<InventoryItem<?, ?>> items;
+  List<InventoryItem<?, ?, ?>> items;
   int selectedIndex;
   private transient List<InventoryListener> listeners;
 
   public Inventory() {
-    items = new ArrayList<InventoryItem<?, ?>>();
+    items = new ArrayList<InventoryItem<?, ?, ?>>();
     listeners = new ArrayList<InventoryListener>();
   }
 
@@ -44,7 +44,7 @@ public class  Inventory {
   // Before adding item, run all inventory listeners
   // If any of them returns false, don't add item to inventory
   // and don't run any possible subsequent listeners
-  public void addItem(InventoryItem<?, ?> item) {
+  public void addItem(InventoryItem<?, ?, ?> item) {
     for (InventoryListener listener: listeners) {
 /*
       if (onAdded(listener, item)) {
@@ -59,7 +59,7 @@ public class  Inventory {
     listeners.addAll(item.getListeners());
   }
 
-  public List<? extends InventoryItem<?, ?>> getItems() {
+  public List<? extends InventoryItem<?, ?, ?>> getItems() {
     return items;
   }
 
@@ -67,7 +67,7 @@ public class  Inventory {
     return selectedIndex;
   }
 
-  public InventoryItem<?, ?> getSelectedItem() {
+  public InventoryItem<?, ?, ?> getSelectedItem() {
     return items.get(selectedIndex);
   }
 
@@ -107,12 +107,12 @@ public class  Inventory {
     return NOT_FOUND;
   }
 
-  public List<Gun<?, ?>> getGuns() {
-    List<Gun<?, ?>> guns = new ArrayList<Gun<?, ?>>();
-    for (InventoryItem<?, ?> item : items) {
+  public List<Gun<?, ?, ?>> getGuns() {
+    List<Gun<?, ?, ?>> guns = new ArrayList<Gun<?, ?, ?>>();
+    for (InventoryItem<?, ?, ?> item : items) {
       // TODO: Or is it the other way around...?
       if (Gun.class.isAssignableFrom(item.getClass())) {
-        guns.add((Gun<?, ?>) item);
+        guns.add((Gun<?, ?, ?>) item);
       }
     }
     return guns;

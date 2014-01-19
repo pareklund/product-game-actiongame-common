@@ -46,15 +46,14 @@ public abstract class AmmoBase
   public List<InventoryListener> getListeners() {
     List<InventoryListener> listeners = 
         new ArrayList<InventoryListener>(1);
-    listeners.add(new InventoryListener() {
+    listeners.add(new InventoryListener<InventoryItem<?, ?, ?>>() {
 
       // If Gun added to inventory, add this Ammo to Gun and 
       // remove itself (Ammo) from inventory
       @Override
-      public <II extends InventoryItem<?, ?, ?>> 
-      boolean onAdded(II item) {
+      public boolean onAdded(InventoryItem<?, ?, ?> item) {
         if (item.getType().equals("Gun")) {
-          Gun<S, L> gun = (Gun<S, L>) item;
+          Gun<S, L, A> gun = (Gun<S, L, A>) item;
           if (gun.acceptsAmmo(AmmoBase.this)) {
             gun.addAmmo(AmmoBase.this);
             ownedBy.getInventory().removeNamedItem(name);

@@ -16,7 +16,7 @@ public interface ActionGameActor
   Inventory getInventory();
   float getMoveSpeed();
   void onConsume(
-      Consumable<?, ?> consumable, ConsumptionListener listener);
+      Consumable<?, ?, ?> consumable, ConsumptionListener listener);
   ConsumptionListener getConsumptionListener();
   void resetConsumptionListener();
   Effect getEffect();

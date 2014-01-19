@@ -2,8 +2,9 @@ package com.anygine.actiongame.client.domain;
 
 public interface Gun 
   <S extends ActionGameComponentState,
-   L extends ActionGameLevel<?, ?>>
-  extends Weapon<S, L> {
-	boolean acceptsAmmo(Ammo<?, ?, ?> ammo);
-	void addAmmo(Ammo<?, ?, ?> ammo);
+   L extends ActionGameLevel<?, ?>,
+   A extends ActionGameActor<?, ?>>
+  extends Weapon<S, L, A> {
+	boolean acceptsAmmo(Ammo<S, L, A> ammo);
+	void addAmmo(Ammo<S, L, A> ammo);
 }

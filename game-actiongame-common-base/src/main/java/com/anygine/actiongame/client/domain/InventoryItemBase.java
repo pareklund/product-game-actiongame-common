@@ -13,7 +13,7 @@ public abstract class InventoryItemBase
   L extends ActionGameLevel<?, ?>,
   A extends ActionGameActor<?, ?>>
   extends CollectableBase<S, L, A>
-  implements InventoryItem<S, L> {
+  implements InventoryItem<S, L, A> {
 
 	public InventoryItemBase(
 //	    long id, int version, 

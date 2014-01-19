@@ -85,7 +85,7 @@ public class ActionGameActorBase
   }
 
   @Override
-  public void onConsume(Consumable<?, ?> consumable,
+  public void onConsume(Consumable<?, ?, ?> consumable,
       ConsumptionListener listener) {
     consumptionListener = listener;
     effect = consumable.getEffect();
