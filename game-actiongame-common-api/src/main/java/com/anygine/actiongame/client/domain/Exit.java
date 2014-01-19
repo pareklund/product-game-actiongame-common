@@ -3,8 +3,9 @@ package com.anygine.actiongame.client.domain;
 
 public interface Exit
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  P extends ActionGamePlayer<?, ?>>
   extends ActionGameComponent<S, L> {
 	boolean isLocked();
-	<P extends ActionGamePlayer<?, ?>> boolean enter(P player);
+	boolean enter(P player);
 }

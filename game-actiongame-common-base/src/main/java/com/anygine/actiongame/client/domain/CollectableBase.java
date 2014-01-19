@@ -9,16 +9,11 @@ import com.anygine.core.common.client.input.Input;
 
 @Storable
 public abstract class CollectableBase 
-/* <S extends ActionGameComponentState, 
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */
-  <S extends ActionGameComponentState, 
-  L extends ActionGameLevel<?>>
-  extends GameComponentBase<S> 
-  implements Collectable<S> {
+  <S extends ActionGameComponentState,
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
+  extends GameComponentBase<S, L>
+  implements Collectable<S, L, A> {
 
 	protected final float bounceHeight;
 	protected final float bounceRate;
@@ -26,7 +21,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
 	
 	protected final SoundWithPath collectedSound;
 	
-	protected ActionGameActor<?> ownedBy;
+	protected ActionGameActor<?, ?> ownedBy;
 	protected float bounce;
 	
 	public CollectableBase(
@@ -57,7 +52,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
 */
 	
   @Override
-	public <A extends ActionGameActor<?>> void onCollected(A collectedBy) {
+	public void onCollected(A collectedBy) {
 		collectedSound.play();
 	}
 

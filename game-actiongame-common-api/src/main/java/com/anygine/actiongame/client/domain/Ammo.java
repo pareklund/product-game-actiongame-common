@@ -6,7 +6,7 @@ public interface Ammo
   <S extends ActionGameComponentState,
    L extends ActionGameLevel<?, ?>,
    A extends ActionGameActor<?, ?>>
-  extends Collectable<S, L> {
+  extends Collectable<S, L, A> {
 	boolean isEmpty();
 	// Projectile is typed to A, whereas Ammo is not
 	<A extends ActionGameActor<?, ?>>

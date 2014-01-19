@@ -1,15 +1,6 @@
 package com.anygine.actiongame.client.domain;
 
-import java.util.Collection;
-
-import com.anygine.actiongame.client.resource.AmmoInfo;
-import com.anygine.actiongame.client.resource.CollectableInfo;
-import com.anygine.actiongame.client.resource.ConsumableInfo;
-import com.anygine.actiongame.client.resource.EnemyInfo;
-import com.anygine.actiongame.client.resource.ExitInfo;
-import com.anygine.actiongame.client.resource.GroundBasedEnemyInfo;
-import com.anygine.actiongame.client.resource.GunInfo;
-import com.anygine.actiongame.client.resource.ProjectileInfo;
+import com.anygine.actiongame.client.resource.*;
 import com.anygine.core.common.client.api.TimerService;
 import com.anygine.core.common.client.domain.Actor;
 import com.anygine.core.common.client.domain.GameComponent;
@@ -19,6 +10,8 @@ import com.anygine.core.common.client.geometry.Vector2;
 import com.anygine.core.common.client.resource.Info;
 import com.anygine.core.common.client.resource.ResourceInfoMap;
 import com.google.inject.Inject;
+
+import java.util.Collection;
 
 // TODO: Clean up / Improve
 public abstract class ActionGameComponentFactoryImpl extends GameComponentFactory {
@@ -31,9 +24,9 @@ public abstract class ActionGameComponentFactoryImpl extends GameComponentFactor
   
   @Override
   public
-  <GC extends GameComponent<?, ?, ?, ?>,
-  L extends Level<?, ?, ?, ?>,
-  A extends Actor<?, ?, ?, ?>>
+  <GC extends GameComponent<?, ?>,
+  L extends Level<?, ?>,
+  A extends Actor<?, ?>>
   void createResource(
     Collection<GC> collection, L level, Vector2 position, Info<GC> resourceInfo, A owner) {
     if (resourceInfo.getType().equals("Exit")) {

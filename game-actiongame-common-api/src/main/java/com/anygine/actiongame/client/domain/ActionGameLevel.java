@@ -13,9 +13,9 @@ public interface ActionGameLevel
   
   <E extends Enemy<?, ?>> List<E> getEnemies();
   
-  <CL extends Collectable<?, ?>> List<CL> getCollectables();
+  <CL extends Collectable<?, ?, ?>> List<CL> getCollectables();
   
-  <X extends Exit<?, ?>> List<X> getExits();
+  <X extends Exit<?, ?, ?>> List<X> getExits();
 
   // TODO: Generify
   Tile[][] getTiles();

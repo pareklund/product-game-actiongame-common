@@ -8,10 +8,10 @@ import com.anygine.core.common.client.geometry.Vector2;
 @Storable
 public abstract class ConsumableBase 
   <S extends ActionGameComponentState, 
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>, 
-  A extends ActionGameActor<?, ?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
   extends InventoryItemBase<S, L, A> 
-  implements Consumable<S, L, A> {
+  implements Consumable<S, L> {
 
 	private final Effect effect;
 	private final SoundWithPath consumingSound;

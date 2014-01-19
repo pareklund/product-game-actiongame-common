@@ -8,17 +8,11 @@ import com.anygine.core.common.client.geometry.Vector2;
 
 @Storable
 public abstract class ExitBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */
   <S extends ActionGameComponentState,
-  P extends ActionGamePlayer<?, ?, ?>,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>>
+  P extends ActionGamePlayer<?, ?>,
+  L extends ActionGameLevel<?, ?>>
   extends GameComponentBase<S, L> 
-  implements Exit<S, P, L> {
+  implements Exit<S, L, P> {
 
 	protected final SoundWithPath exitingSound;
 	protected final SoundWithPath lockedSound;
@@ -81,7 +75,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
 			if (playerInventory.isEmpty()) {
 				return false;
 			}
-			InventoryItem<?, ?, ?>  inventoryItem = playerInventory.getSelectedItem();
+			InventoryItem<?, ?> inventoryItem = playerInventory.getSelectedItem();
 			if ("Key".equals(inventoryItem.getName())) {
 				locked = false;
 				unlockedSound.play();

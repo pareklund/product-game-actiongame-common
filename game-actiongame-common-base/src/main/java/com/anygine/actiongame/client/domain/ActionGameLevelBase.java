@@ -23,21 +23,10 @@ import com.anygine.core.common.client.resource.TileInfo;
 // TODO: Separate out sound handling to renderer class or correspondingly
 @Storable
 public abstract class ActionGameLevelBase
-/* <S extends ActionGameComponentState, 
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */
-  <P extends ActionGamePlayer<?, ?, ?>,
-  GC extends ActionGameComponent<?, ?>,
-  A extends ActionGameActor<?, ?, ?>,
-  E extends Enemy<?, ?, ?>,
-  CL extends Collectable<?, ?>,
-  X extends Exit<?, ?, ?>,
-  PR extends Projectile<?, ?, ?>>
-  extends LevelBase<P, GC> 
-  implements ActionGameLevel<P, GC, A, E, CL, X, PR> {
+  <P extends ActionGamePlayer<?, ?>,
+  GC extends ActionGameComponent<?, ?>>
+  extends LevelBase<GC, P>
+  implements ActionGameLevel<GC, P> {
 
   // These fields are "write once" or effectively immutable
   // Not final due to being set from level load callback

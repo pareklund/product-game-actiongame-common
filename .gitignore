@@ -20,6 +20,10 @@
 *.tar
 *.zip
 
+# Subversion #
+######################
+.svn/
+
 # Logs and databases #
 ######################
 *.log
@@ -54,6 +58,7 @@ nb-configuration.xml
 .idea/
 *.iml
 *.iws
+bin/
 
 # Maven
 log/

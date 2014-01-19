@@ -9,15 +9,9 @@ import com.anygine.core.common.client.geometry.Vector2;
 
 @Storable
 public abstract class AmmoBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */ 
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-  A extends ActionGameActor<?, ?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
   extends InventoryItemBase<S, L, A> 
   implements Ammo<S, L, A> {
 
@@ -60,7 +54,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
       public <II extends InventoryItem<?, ?, ?>> 
       boolean onAdded(II item) {
         if (item.getType().equals("Gun")) {
-          Gun<S, L, A> gun = (Gun<S, L, A>) item;
+          Gun<S, L> gun = (Gun<S, L>) item;
           if (gun.acceptsAmmo(AmmoBase.this)) {
             gun.addAmmo(AmmoBase.this);
             ownedBy.getInventory().removeNamedItem(name);
@@ -87,9 +81,9 @@ E extends Enemy<S, P, L, GC, A, E>> */
   }
 
   @Override
-  public List<Projectile<S, L, A>> use(int num, float speed) {
-    List<Projectile<S, L, A>> projectiles = 
-        new ArrayList<Projectile<S, L, A>>();
+  public List<Projectile<S, A, L>> use(int num, float speed) {
+    List<Projectile<S, A, L>> projectiles =
+        new ArrayList<Projectile<S, A, L>>();
     for (int i = 0; i < num; i++) {
       gameComponentFactory.createResource(
           projectiles, level, ownedBy.getPosition(), bulletName, ownedBy);

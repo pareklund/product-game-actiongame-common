@@ -9,17 +9,11 @@ import com.anygine.core.common.client.input.Input;
 // TODO: Possibly not have this as a standalone Entity/GameComponent
 @Storable
 public abstract class ProjectileBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */ 
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-  A extends ActionGameActor<?, ?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
   extends ActionGameComponentBase<S, L> 
-  implements Projectile<S, L, A> {
+  implements Projectile<S, A, L> {
 
 	protected final int damage;
 	protected final A owner;
@@ -80,7 +74,7 @@ E extends Enemy<S, P, L, GC, A, E>> */
 		}
 	}
 
-	private static <A extends ActionGameActor<?, ?, ?>>
+	private static <A extends ActionGameActor<?, ?>>
   Vector2 getVelocity(float speed, A owner) {
 		Vector2 velocity;
 		if (owner.getFaceDirection() == FaceDirection.Left) {

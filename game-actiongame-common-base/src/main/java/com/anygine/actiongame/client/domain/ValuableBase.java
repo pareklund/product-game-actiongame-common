@@ -6,15 +6,9 @@ import com.anygine.core.common.client.geometry.Vector2;
 
 @Storable
 public abstract class ValuableBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-  A extends ActionGameActor<?, ?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
   extends CollectableBase<S, L, A> 
   implements Valuable<S, L, A> {
 
@@ -36,12 +30,4 @@ E extends Enemy<S, P, L, GC, A, E>> */
 	public void onCollected(A collectedBy) {
 		super.onCollected(collectedBy);
 	}
-	
-/*	
-  @Override
-  public void onCollected(P collectedBy) {
-    super.onCollected(collectedBy);
-    collectedBy.increaseNumCollectedInLevel();
-  }
-  */
 }

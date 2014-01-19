@@ -11,30 +11,18 @@ import com.anygine.core.common.client.geometry.Vector2;
 
 @Storable
 public abstract class GunBase
-/* <S extends ActionGameComponentState,
-P extends ActionGamePlayer<S, P, L, GC, A, E>,
-L extends ActionGameLevel<S, P, L, GC, A, E>,
-GC extends ActionGameComponent<S, P, L, GC, A, E>,
-A extends ActionGameActor<S, P, L, GC, A, E>,
-E extends Enemy<S, P, L, GC, A, E>> */ 
   <S extends ActionGameComponentState,
-  L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-  A extends ActionGameActor<?, ?, ?>>
+  L extends ActionGameLevel<?, ?>,
+  A extends ActionGameActor<?, ?>>
   extends InventoryItemBase<S, L, A> 
   implements Gun<S, L> {
 
   // TODO: Ensure that an Embeddable class is generated for this inner class
   @Embeddable
 	public static class AmmoSupply
-/*  <S extends ActionGameComponentState,
-  P extends ActionGamePlayer<S, P, L, GC, A, E>,
-  L extends ActionGameLevel<S, P, L, GC, A, E>,
-  GC extends ActionGameComponent<S, P, L, GC, A, E>,
-  A extends ActionGameActor<S, P, L, GC, A, E>,
-  E extends Enemy<S, P, L, GC, A, E>> */ 
     <S extends ActionGameComponentState,
-    L extends ActionGameLevel<?, ?, ?, ?, ?, ?, ?>,
-    A extends ActionGameActor<?, ?, ?>>
+    L extends ActionGameLevel<?, ?>,
+    A extends ActionGameActor<?, ?>>
   {
 	  
 		private List<Ammo<S, L, A>> ammos;
@@ -71,9 +59,11 @@ E extends Enemy<S, P, L, GC, A, E>> */
 			ammos.add(ammo);
 		}
 		
-		public List<Projectile<S, L, A>> useAmmo(int num, float projectileSpeed) {
+		public List<Projectile<S, A, L>> useAmmo(
+            int num, float projectileSpeed, A ownedBy) {
 			Ammo<S, L, A> ammo = ammos.get(selectedIndex);
-			List<Projectile<S, L, A>> projectiles = ammo.use(num, projectileSpeed);
+			List<Projectile<S, A, L>> projectiles =
+              ammo.use(num, projectileSpeed, ownedBy);
 			if (ammo.isEmpty()) {
 				ammos.remove(selectedIndex);
 				if (selectedIndex > ammos.size()) {
@@ -144,8 +134,8 @@ E extends Enemy<S, P, L, GC, A, E>> */
 			return;
 		}
 		// TODO: Add projectile type
-		List<Projectile<S, L, A>> projectiles = ammoSupply.useAmmo(
-				roundsPerShot, projectileSpeed);
+		List<Projectile<S, A, L>> projectiles = ammoSupply.useAmmo(
+				roundsPerShot, projectileSpeed, (A) ownedBy);
 		ownedBy.getLevel().addProjectiles(projectiles);
 		firingSound.play();
 	}
