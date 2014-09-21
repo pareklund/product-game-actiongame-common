@@ -20,9 +20,11 @@
   <url>http://maven.apache.org</url>
 
   <scm>
-    <url>git://nasty:8080/git/</url>
-    <connection>scm:git:ssh://admin@nasty/share/git/product-game-actiongame-common.git</connection>
-    <developerConnection>scm:git:ssh://admin@nasty/share/git/product-game-actiongame-common.git</developerConnection>
+    <url>https://github.com/pareklund/product-game-actiongame-common.git</url>
+    <connection>scm:git:git://github.com/pareklund/product-game-actiongame-common.git/</connection>
+    <developerConnection>scm:git:git@github.com:pareklund/product-game-actiongame-common.git</developerConnection>
+    <tag>HEAD</tag>
+  
   </scm>
 
   <dependencies>
